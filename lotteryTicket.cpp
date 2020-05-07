@@ -20,13 +20,9 @@
 #include <stdlib.h>
 #include <cctype>
 
-
-
 using namespace std;
 
-
 struct   ticket {
-    
     unsigned  int  numbers[6];
     ticket* next;
     int number;  //extra variable to keep track of which number ticket
@@ -47,10 +43,6 @@ public:
     void deleteSequence(int array[]);
     void insertTicket(int array[]); // method created to insert specific numbered sequence ticket
     
-
-    
-    
-    
 private:
     ticket* ticketListHead;
     ticket* ticketListTail;
@@ -62,7 +54,6 @@ private:
 //method created to match 2 arrays, returns true if all 6 variables are matches, false otherwise
 bool match(int arr1[],unsigned int arr2[])
 {
-
     int count=0;
     for(int i=0;i<6;i++)
     {
@@ -80,7 +71,6 @@ bool match(int arr1[],unsigned int arr2[])
     {
         return false;
     }
-    
 }
 
 //method to print array values, given the array
@@ -96,16 +86,15 @@ void print(unsigned int arr[], int size)
 void deleteTicket(ticket *traverse,int index)
 {
     int x=0;
+    
     while(x!=1)
     {
         if (traverse->next == NULL)
-        {
-        
+        {      
             break;
         }
         if(traverse->number==index-1)
-        {
-          
+        {        
             traverse->next=traverse->next->next;
             
             for(int i=0;i<6;i++)
@@ -113,28 +102,18 @@ void deleteTicket(ticket *traverse,int index)
                 if(traverse->next!=NULL)
                 {
                     traverse->next->numbers[x]=NULL;
-                }
-                
+                }               
             }
-
         }
         
         if (traverse->next == NULL)
-        {
-            
+        {           
             break;
         }
-
         
-
         traverse=traverse->next;
-
-    }
-        
-
- 
+    } 
 }
-
 
 //constructor
 SuperDraw::SuperDraw()
@@ -142,7 +121,6 @@ SuperDraw::SuperDraw()
     this->ticketListHead=NULL;
     this->ticketListTail=NULL;
 }
-
 
 //destructor sets tail and head to null and tickets back to 0
 SuperDraw::~SuperDraw()
@@ -153,12 +131,9 @@ SuperDraw::~SuperDraw()
         tmp = this->ticketListHead;
         this->ticketListHead = this->ticketListHead->next;
         this->tickets--;
-
     }
 
-    this->ticketListTail=NULL;
-
-    
+    this->ticketListTail=NULL;  
 }
 
 
@@ -174,23 +149,18 @@ SuperDraw::SuperDraw(int number)
         if(i!=number-1)
         {
             cout<<" and ";
-        }
-        
-        
+        }     
     }
-    
     
     cout<<endl;
 }
 
 //copy constructor
 SuperDraw::SuperDraw(SuperDraw &dummy)
-{
-    
+{  
     this->ticketListHead=dummy.ticketListHead;
     this->ticketListTail=dummy.ticketListTail;
-    this->tickets=dummy.tickets;
-    
+    this->tickets=dummy.tickets;  
 }
 
 
@@ -201,12 +171,10 @@ ticket SuperDraw::newTicket(int verbose)
     this->tickets++;
     lottery->number=this->tickets;
     if(this->ticketListHead==NULL)
-    {
-     
+    {    
         this->ticketListHead=lottery;
         this->ticketListTail=lottery;
-        lottery->next=NULL;
-    
+        lottery->next=NULL;  
     }
     else
     {
@@ -223,6 +191,7 @@ ticket SuperDraw::newTicket(int verbose)
     int n = sizeof(lottery->numbers)/sizeof(lottery->numbers[0]);
     
     srand(time(0));
+    
     for(int i=0;i<n;i++)
     {
         int x=1;
@@ -241,13 +210,7 @@ ticket SuperDraw::newTicket(int verbose)
             {
                 continue;
             }
-
-        }
-        
-
-
-        
-        
+        }   
     }
     
     int temp;
@@ -265,8 +228,6 @@ ticket SuperDraw::newTicket(int verbose)
         }
     }
     
-
-
     if(verbose==0)
     {
         return *lottery;
@@ -285,12 +246,8 @@ ticket SuperDraw::newTicket(int verbose)
         
     }
     
-    return *lottery;
-    
-    
+    return *lottery;     
 }
-
-
 
 
 //method to print all tickets
@@ -317,11 +274,6 @@ void SuperDraw::printAllTicketNumbers()
     cout<<endl;
 }
 
-
-
-
-
-
 //method to verify if sequence exists in ticket list
 void SuperDraw::verifySequence(int array[])
 {
@@ -330,14 +282,11 @@ void SuperDraw::verifySequence(int array[])
     ticket temp=*this->ticketListHead;
     for(int i=0;i<this->tickets;i++)
         
-    {
-        
+    {  
         if(match(array,temp.numbers)==true)
         {
             check=true;
         }
- 
-
         
         if(i!=(this->tickets-1))
             
@@ -354,10 +303,7 @@ void SuperDraw::verifySequence(int array[])
     else
     {
         cout<<"The provided sequence of numbers was never generated before. "<<endl;
-    }
-    
- 
-    
+    }  
 }
 
 
@@ -373,17 +319,13 @@ void SuperDraw::deleteSequence(int array[])
     ticket temp=*this->ticketListHead;
     for(int i=0;i<this->tickets;i++)
         
-    {
-        
+    {    
         if(match(array,temp.numbers)==true)
         {
             check=true;
-            index=temp.number;
-            
+            index=temp.number;         
         }
-        
-        
-        
+              
         if(i!=(this->tickets-1))
             
         {
@@ -400,8 +342,6 @@ void SuperDraw::deleteSequence(int array[])
         check2=true;
     }
     
-    
-    
     if(check2==true)
     {
         cout<<"The provided sequence of numbers was successfully deleted."<<endl;
@@ -409,12 +349,7 @@ void SuperDraw::deleteSequence(int array[])
     else
     {
         cout<<"The provided sequence of numbers was never generated before. "<<endl;
-    }
-    
-
-    
-    
-
+    } 
 }
 
 //method made by me to test verify and delete methods, this methods puts a ticket with specific values
@@ -424,34 +359,23 @@ void SuperDraw::insertTicket(int array[])
     this->tickets++;
     lottery->number=this->tickets;
     if(this->ticketListHead==NULL)
-    {
-        
+    { 
         this->ticketListHead=lottery;
         this->ticketListTail=lottery;
-        lottery->next=NULL;
-        
+        lottery->next=NULL;  
     }
     else
     {
-        
-        
         this->ticketListTail->next=lottery;
         this->ticketListTail=lottery;
         lottery->next=NULL;
-        
     }
     
     for(int i=0;i<6;i++)
     {
         lottery->numbers[i]=array[i];
     }
-    
-    
-
 }
-
-
-
 
 int   main () {
     
@@ -511,8 +435,7 @@ int   main () {
     sd5.verifySequence(myNumbers2);
     sd5.deleteSequence(myNumbers2);
     sd5.verifySequence(myNumbers2);
-    
-    
+      
     cout<<endl<<endl;
     
     //question 8
@@ -525,10 +448,4 @@ int   main () {
     sd6.newTicket(0);
     SuperDraw sd7(sd6);
     sd7.printAllTicketNumbers();
-    
-   
-
 }
-
-
-
