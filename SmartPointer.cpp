@@ -247,13 +247,7 @@ int main() {
         
         double array2[5]= {1.1,2.2,-3.3,4.4,5.5};   //array declaration with negative numer, will throw exception
         
-        SmartPtr<double> arrayPointer2(array2,5);
-        
-        
-        
-        
-
-        
+        SmartPtr<double> arrayPointer2(array2,5); 
         
     }
     catch(string& message)
@@ -265,8 +259,4 @@ int main() {
         cout<<"Variable Could Not Be Allocated; System Is Out Of Memory"<<endl;
     }
    
-    
-    
-    
-    
 }
