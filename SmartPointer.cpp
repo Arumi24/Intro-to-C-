@@ -203,11 +203,7 @@ int main() {
         SmartPointer sPointer5=sPointer1+sPointer2; //operation overload for +
         cout<<sPointer5.getValue()<<endl;
         
-        SmartPointer sPointer6(-5);  //catch exception for negative number
-        
-        
-        
-        
+        SmartPointer sPointer6(-5);  //catch exception for negative number  
     }
     catch(string& message)
     {
